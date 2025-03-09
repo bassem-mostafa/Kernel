@@ -1,0 +1,186 @@
+// #############################################################################
+// #### Copyright ##############################################################
+// #############################################################################
+
+/*
+ * Copyright 2024 BaSSeM
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+// #############################################################################
+// #### Description ############################################################
+// #############################################################################
+
+/**
+ *  @file
+ *
+ *  @brief Platform Kernel
+ */
+
+// #############################################################################
+// #### Control Include(s) #####################################################
+// #############################################################################
+
+// #############################################################################
+// #### Control Macro(s) #######################################################
+// #############################################################################
+
+// #############################################################################
+// #### File Guard #############################################################
+// #############################################################################
+
+/**
+ *  @addtogroup Platform_Kernel
+ *
+ *  @note Default port is STUB if Unspecified
+ *
+ *  @{
+ */
+
+#ifndef KERNEL_H_
+    #define KERNEL_H_
+
+    #ifdef __cplusplus
+extern "C"
+{
+    #endif /* __cplusplus */
+
+    // #############################################################################
+    // #### Include(s) #############################################################
+    // #############################################################################
+
+    #include "Kernel_Port.h"
+
+    // #############################################################################
+    // #### Public Macro(s) ########################################################
+    // #############################################################################
+
+    // #############################################################################
+    // #### Public Type(s) #########################################################
+    // #############################################################################
+
+    /**
+     *  @brief Kernel Operation Status
+     *
+     *  @enum KERNEL_Status_t
+     */
+    typedef enum KERNEL_Status
+    {
+        KERNEL_Status_Success = 0,     ///< Success
+        KERNEL_Status_ArgumentInvalid, ///< Argument Invalid
+        KERNEL_Status_NotSupported,    ///< Not Supported
+        KERNEL_Status_Error,           ///< General Error
+        KERNEL_Status_Busy,            ///< Busy
+        KERNEL_Status_Timeout,         ///< Timeout
+    } KERNEL_Status_t;
+
+    /**
+     *  @brief Kernel Task Type
+     *
+     *  @struct KERNEL_Task
+     */
+    typedef struct KERNEL_Task
+    {
+        KERNEL_Status_t ( *Initialize )( void );   ///< Initialize API
+        KERNEL_Status_t ( *Cycle )( void );        ///< Cycle API
+        KERNEL_Status_t ( *DeInitialize )( void ); ///< DeInitialize API
+    } KERNEL_Task_t;
+
+    // #############################################################################
+    // #### Public Method(s) #######################################################
+    // #############################################################################
+
+    /**
+     *  @brief Initialize Kernel
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_Initialize( void );
+
+    /**
+     *  @brief Cycle Kernel and ALL Created Tasks
+     *
+     *  @note Created tasks are cycled in SAME ORDER of creation
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_Cycle( void );
+
+    /**
+     *  @brief DeInitialize Kernel
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_DeInitialize( void );
+
+    /**
+     *  @brief Create and register Task into Kernel
+     *
+     *  @param[in] KERNEL_Task Task
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_TaskCreate( KERNEL_Task_t * KERNEL_Task );
+
+    /**
+     *  @brief Delete and unregister Task from Kernel
+     *
+     *  @param[in] KERNEL_Task Task
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * KERNEL_Task );
+
+    /**
+     *  @brief Disable ALL Interrupts
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_InterruptDisable( void );
+
+    /**
+     *  @brief Enable ALL Interrupts
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_InterruptEnable( void );
+
+    // TODO Add More APIs
+
+    // #############################################################################
+    // #### Public Variable(s) #####################################################
+    // #############################################################################
+
+    /**
+     *  @brief Version
+     */
+    extern const char KERNEL_VERSION[];
+
+    // #############################################################################
+    // #### File Guard #############################################################
+    // #############################################################################
+
+    #ifdef __cplusplus
+} /* extern "C" */
+    #endif /* __cplusplus */
+
+#endif /* KERNEL_H_ */
+
+/**
+ *  @}
+ */
+
+// #############################################################################
+// #### END OF FILE ############################################################
+// #############################################################################

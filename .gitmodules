@@ -1,0 +1,18 @@
+[submodule "port/Fares_PCB_Arduino_MEGA2560"]
+	path = port/Fares_PCB_Arduino_MEGA2560
+	url = https://github.com/bassem-mostafa/Kernel_Fares_PCB_Arduino_MEGA2560.git
+[submodule "port/Stub"]
+	path = port/Stub
+	url = https://github.com/bassem-mostafa/Kernel_Stub.git
+[submodule "variant/FreeRTOS"]
+	path = variant/FreeRTOS
+	url = https://github.com/bassem-mostafa/Kernel_FreeRTOS.git
+[submodule "port/Power_Analyzer"]
+	path = port/Power_Analyzer
+	url = https://github.com/bassem-mostafa/Kernel_Power_Analyzer.git
+[submodule "variant/Zephyr"]
+	path = variant/Zephyr
+	url = https://github.com/bassem-mostafa/Kernel_Zephyr.git
+[submodule "port/Flow_Meter"]
+	path = port/Flow_Meter
+	url = https://github.com/bassem-mostafa/Kernel_Flow_Meter.git
