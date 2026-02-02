@@ -143,6 +143,20 @@ extern "C"
     KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * KERNEL_Task );
 
     /**
+     *  @brief Reset
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_Reset( void );
+
+    /**
+     *  @brief Enable clock
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_ClockEnable( void );
+
+    /**
      *  @brief Disable ALL Interrupts
      *
      *  @return KERNEL_Status_t

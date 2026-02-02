@@ -236,6 +236,36 @@ KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * Task )
     return Status;
 }
 
+KERNEL_Status_t KERNEL_Reset( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        KERNEL_Trace( "%s( void )", __FUNCTION__ );
+
+        Status = KERNEL_Instance_Reset( &KERNEL_Context.Instance );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t KERNEL_ClockEnable( void )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        KERNEL_Trace( "%s( void )", __FUNCTION__ );
+
+        Status = KERNEL_Instance_ClockEnable( &KERNEL_Context.Instance );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
 KERNEL_Status_t KERNEL_InterruptDisable( void )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
@@ -270,7 +300,7 @@ KERNEL_Status_t KERNEL_InterruptEnable( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char KERNEL_VERSION[] = "0.0.0.v20260130-0032";
+const char KERNEL_VERSION[] = "0.0.0.v20260202-1914";
 
 // #############################################################################
 // #### File Guard #############################################################

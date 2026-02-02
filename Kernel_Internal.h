@@ -106,6 +106,8 @@ extern "C"
     KERNEL_Status_t KERNEL_Instance_TaskCreate( KERNEL_Instance_t * Instance, KERNEL_Task_t * Task );
     KERNEL_Status_t KERNEL_Instance_TaskDestroy( KERNEL_Instance_t * Instance, KERNEL_Task_t * Task );
 
+    KERNEL_Status_t KERNEL_Instance_Reset( KERNEL_Instance_t * Instance );
+    KERNEL_Status_t KERNEL_Instance_ClockEnable( KERNEL_Instance_t * Instance );
     KERNEL_Status_t KERNEL_Instance_InterruptDisable( KERNEL_Instance_t * Instance );
     KERNEL_Status_t KERNEL_Instance_InterruptEnable( KERNEL_Instance_t * Instance );
 
