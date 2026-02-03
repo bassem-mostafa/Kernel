@@ -103,6 +103,8 @@ extern "C"
     KERNEL_Status_t KERNEL_Instance_Cycle( KERNEL_Instance_t * Instance );
     KERNEL_Status_t KERNEL_Instance_DeInitialize( KERNEL_Instance_t * Instance );
 
+    KERNEL_Status_t KERNEL_Instance_GetResetReason( KERNEL_Instance_t * Instance, KERNEL_ResetReason_t * ResetReason );
+
     KERNEL_Status_t KERNEL_Instance_TaskCreate( KERNEL_Instance_t * Instance, KERNEL_Task_t * Task );
     KERNEL_Status_t KERNEL_Instance_TaskDestroy( KERNEL_Instance_t * Instance, KERNEL_Task_t * Task );
 
@@ -110,8 +112,6 @@ extern "C"
     KERNEL_Status_t KERNEL_Instance_ClockEnable( KERNEL_Instance_t * Instance );
     KERNEL_Status_t KERNEL_Instance_InterruptDisable( KERNEL_Instance_t * Instance );
     KERNEL_Status_t KERNEL_Instance_InterruptEnable( KERNEL_Instance_t * Instance );
-
-    // TODO Add More APIs
 
     // #############################################################################
     // #### Public Variable(s) #####################################################

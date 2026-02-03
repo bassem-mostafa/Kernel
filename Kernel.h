@@ -48,6 +48,13 @@
  *  @{
  */
 
+/**
+ *  @defgroup Platform_Kernel_Variant Variant
+ *
+ *  @{
+ *  @}
+ */
+
 #ifndef KERNEL_H_
     #define KERNEL_H_
 
@@ -125,22 +132,31 @@ extern "C"
     KERNEL_Status_t KERNEL_DeInitialize( void );
 
     /**
-     *  @brief Create and register Task into Kernel
+     *  @brief Get reset reason
      *
-     *  @param[in] KERNEL_Task Task
+     *  @param[out] ResetReason Reset Reason
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_TaskCreate( KERNEL_Task_t * KERNEL_Task );
+    KERNEL_Status_t KERNEL_GetResetReason( KERNEL_ResetReason_t * ResetReason );
+
+    /**
+     *  @brief Create and register Task into Kernel
+     *
+     *  @param[in] Task Task
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_TaskCreate( KERNEL_Task_t * Task );
 
     /**
      *  @brief Delete and unregister Task from Kernel
      *
-     *  @param[in] KERNEL_Task Task
+     *  @param[in] Task Task
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * KERNEL_Task );
+    KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * Task );
 
     /**
      *  @brief Reset
@@ -169,8 +185,6 @@ extern "C"
      *  @return KERNEL_Status_t
      */
     KERNEL_Status_t KERNEL_InterruptEnable( void );
-
-    // TODO Add More APIs
 
     // #############################################################################
     // #### Public Variable(s) #####################################################

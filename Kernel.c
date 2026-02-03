@@ -194,6 +194,27 @@ KERNEL_Status_t KERNEL_DeInitialize( void )
     return Status;
 }
 
+KERNEL_Status_t KERNEL_GetResetReason( KERNEL_ResetReason_t * ResetReason )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Error;
+
+    do
+    {
+        KERNEL_Trace( "%s( ResetReason=%p )", __FUNCTION__, ResetReason );
+
+        if ( ResetReason == NULL )
+        {
+            Status = KERNEL_Status_ArgumentInvalid;
+            break;
+        }
+
+        Status = KERNEL_Instance_GetResetReason( &KERNEL_Context.Instance, ResetReason );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
 KERNEL_Status_t KERNEL_TaskCreate( KERNEL_Task_t * Task )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
@@ -300,7 +321,7 @@ KERNEL_Status_t KERNEL_InterruptEnable( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char KERNEL_VERSION[] = "0.0.0.v20260202-1914";
+const char KERNEL_VERSION[] = "0.0.0.v20260203-0213";
 
 // #############################################################################
 // #### File Guard #############################################################
