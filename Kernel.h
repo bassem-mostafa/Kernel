@@ -102,6 +102,9 @@ extern "C"
         KERNEL_Status_t ( *Initialize )( void );   ///< Initialize API
         KERNEL_Status_t ( *Cycle )( void );        ///< Cycle API
         KERNEL_Status_t ( *DeInitialize )( void ); ///< DeInitialize API
+
+        // Managed Internally
+        LIST_Node_t Node;
     } KERNEL_Task_t;
 
     // #############################################################################
