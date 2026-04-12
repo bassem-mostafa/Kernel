@@ -87,11 +87,11 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
-    typedef struct KERNEL_Instance_Context KERNEL_Instance_Context_t;
+    typedef struct KERNEL_InstanceContext KERNEL_InstanceContext_t;
 
     typedef struct KERNEL_Instance
     {
-        KERNEL_Instance_Context_t * Context;
+        KERNEL_InstanceContext_t * Context;
     } KERNEL_Instance_t;
 
     // #############################################################################
