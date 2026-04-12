@@ -16,3 +16,6 @@
 [submodule "port/Flow_Meter"]
 	path = port/Flow_Meter
 	url = https://github.com/bassem-mostafa/Kernel_Flow_Meter.git
+[submodule "variant/BareMetal"]
+	path = variant/BareMetal
+	url = https://github.com/bassem-mostafa/Kernel_BareMetal.git
