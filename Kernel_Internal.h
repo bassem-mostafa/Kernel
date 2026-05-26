@@ -48,7 +48,7 @@ extern "C"
     // #### Include(s) #############################################################
     // #############################################################################
 
-    #include "KERNEL_Port.h"
+    #include "KERNEL.h"
 
     // #############################################################################
     // #### Public Macro(s) ########################################################
@@ -87,11 +87,8 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
-    typedef struct KERNEL_InstanceContext KERNEL_InstanceContext_t;
-
     typedef struct KERNEL_Instance
     {
-        KERNEL_InstanceContext_t * Context;
     } KERNEL_Instance_t;
 
     // #############################################################################
@@ -99,19 +96,19 @@ extern "C"
     // #############################################################################
 
     // The following APIs MUST be provided by the port
-    KERNEL_Status_t KERNEL_Instance_Initialize( KERNEL_Instance_t * Instance );
-    KERNEL_Status_t KERNEL_Instance_Cycle( KERNEL_Instance_t * Instance );
-    KERNEL_Status_t KERNEL_Instance_DeInitialize( KERNEL_Instance_t * Instance );
+    KERNEL_Status_t KERNEL_Port_Initialize( KERNEL_t KERNELx );
+    KERNEL_Status_t KERNEL_Port_Cycle( KERNEL_t KERNELx );
+    KERNEL_Status_t KERNEL_Port_DeInitialize( KERNEL_t KERNELx );
 
-    KERNEL_Status_t KERNEL_Instance_GetResetReason( KERNEL_Instance_t * Instance, KERNEL_ResetReason_t * ResetReason );
+    KERNEL_Status_t KERNEL_Port_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * ResetReason );
 
-    KERNEL_Status_t KERNEL_Instance_TaskCreate( KERNEL_Instance_t * Instance, KERNEL_Task_t * Task );
-    KERNEL_Status_t KERNEL_Instance_TaskDestroy( KERNEL_Instance_t * Instance, KERNEL_Task_t * Task );
+    KERNEL_Status_t KERNEL_Port_TaskCreate( KERNEL_t KERNELx, KERNEL_Task_t * Task );
+    KERNEL_Status_t KERNEL_Port_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task );
 
-    KERNEL_Status_t KERNEL_Instance_Reset( KERNEL_Instance_t * Instance );
-    KERNEL_Status_t KERNEL_Instance_ClockEnable( KERNEL_Instance_t * Instance );
-    KERNEL_Status_t KERNEL_Instance_InterruptDisable( KERNEL_Instance_t * Instance );
-    KERNEL_Status_t KERNEL_Instance_InterruptEnable( KERNEL_Instance_t * Instance );
+    KERNEL_Status_t KERNEL_Port_Reset( KERNEL_t KERNELx );
+    KERNEL_Status_t KERNEL_Port_ClockEnable( KERNEL_t KERNELx );
+    KERNEL_Status_t KERNEL_Port_InterruptDisable( KERNEL_t KERNELx );
+    KERNEL_Status_t KERNEL_Port_InterruptEnable( KERNEL_t KERNELx );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################

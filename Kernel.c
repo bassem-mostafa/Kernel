@@ -61,7 +61,6 @@
 
 typedef struct KERNEL_Context
 {
-    KERNEL_Instance_t Instance;
 } KERNEL_Context_t;
 
 // #############################################################################
@@ -125,7 +124,7 @@ static KERNEL_Status_t KERNEL_Context_DeInitialize( void )
 // #### Public Method(s) #######################################################
 // #############################################################################
 
-KERNEL_Status_t KERNEL_Initialize( void )
+KERNEL_Status_t KERNEL_Initialize( KERNEL_t KERNELx )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
@@ -138,7 +137,7 @@ KERNEL_Status_t KERNEL_Initialize( void )
             break;
         }
 
-        if ( ( Status = KERNEL_Instance_Initialize( &KERNEL_Context.Instance ) ) != KERNEL_Status_Success )
+        if ( ( Status = KERNEL_Port_Initialize( KERNELx ) ) != KERNEL_Status_Success )
         {
             break;
         }
@@ -148,7 +147,7 @@ KERNEL_Status_t KERNEL_Initialize( void )
     return Status;
 }
 
-KERNEL_Status_t KERNEL_Cycle( void )
+KERNEL_Status_t KERNEL_Cycle( KERNEL_t KERNELx )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
@@ -161,7 +160,7 @@ KERNEL_Status_t KERNEL_Cycle( void )
             break;
         }
 
-        if ( ( Status = KERNEL_Instance_Cycle( &KERNEL_Context.Instance ) ) != KERNEL_Status_Success )
+        if ( ( Status = KERNEL_Port_Cycle( KERNELx ) ) != KERNEL_Status_Success )
         {
             break;
         }
@@ -171,7 +170,7 @@ KERNEL_Status_t KERNEL_Cycle( void )
     return Status;
 }
 
-KERNEL_Status_t KERNEL_DeInitialize( void )
+KERNEL_Status_t KERNEL_DeInitialize( KERNEL_t KERNELx )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
@@ -179,7 +178,7 @@ KERNEL_Status_t KERNEL_DeInitialize( void )
     {
         KERNEL_Trace( "%s( void )", __FUNCTION__ );
 
-        if ( ( Status = KERNEL_Instance_DeInitialize( &KERNEL_Context.Instance ) ) != KERNEL_Status_Success )
+        if ( ( Status = KERNEL_Port_DeInitialize( KERNELx ) ) != KERNEL_Status_Success )
         {
             break;
         }
@@ -194,7 +193,7 @@ KERNEL_Status_t KERNEL_DeInitialize( void )
     return Status;
 }
 
-KERNEL_Status_t KERNEL_GetResetReason( KERNEL_ResetReason_t * ResetReason )
+KERNEL_Status_t KERNEL_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * ResetReason )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
 
@@ -208,14 +207,14 @@ KERNEL_Status_t KERNEL_GetResetReason( KERNEL_ResetReason_t * ResetReason )
             break;
         }
 
-        Status = KERNEL_Instance_GetResetReason( &KERNEL_Context.Instance, ResetReason );
+        Status = KERNEL_Port_GetResetReason( KERNELx, ResetReason );
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t KERNEL_TaskCreate( KERNEL_Task_t * Task )
+KERNEL_Status_t KERNEL_TaskCreate( KERNEL_t KERNELx, KERNEL_Task_t * Task )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
 
@@ -229,14 +228,14 @@ KERNEL_Status_t KERNEL_TaskCreate( KERNEL_Task_t * Task )
             break;
         }
 
-        Status = KERNEL_Instance_TaskCreate( &KERNEL_Context.Instance, Task );
+        Status = KERNEL_Port_TaskCreate( KERNELx, Task );
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * Task )
+KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
 
@@ -250,14 +249,14 @@ KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * Task )
             break;
         }
 
-        Status = KERNEL_Instance_TaskDestroy( &KERNEL_Context.Instance, Task );
+        Status = KERNEL_Port_TaskDestroy( KERNELx, Task );
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t KERNEL_Reset( void )
+KERNEL_Status_t KERNEL_Reset( KERNEL_t KERNELx )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
@@ -265,14 +264,14 @@ KERNEL_Status_t KERNEL_Reset( void )
     {
         KERNEL_Trace( "%s( void )", __FUNCTION__ );
 
-        Status = KERNEL_Instance_Reset( &KERNEL_Context.Instance );
+        Status = KERNEL_Port_Reset( KERNELx );
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t KERNEL_ClockEnable( void )
+KERNEL_Status_t KERNEL_ClockEnable( KERNEL_t KERNELx )
 {
     KERNEL_Status_t Status = KERNEL_Status_Success;
 
@@ -280,14 +279,14 @@ KERNEL_Status_t KERNEL_ClockEnable( void )
     {
         KERNEL_Trace( "%s( void )", __FUNCTION__ );
 
-        Status = KERNEL_Instance_ClockEnable( &KERNEL_Context.Instance );
+        Status = KERNEL_Port_ClockEnable( KERNELx );
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t KERNEL_InterruptDisable( void )
+KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
 
@@ -295,14 +294,14 @@ KERNEL_Status_t KERNEL_InterruptDisable( void )
     {
         KERNEL_Trace( "%s( void )", __FUNCTION__ );
 
-        Status = KERNEL_Instance_InterruptDisable( &KERNEL_Context.Instance );
+        Status = KERNEL_Port_InterruptDisable( KERNELx );
     }
     while ( 0 );
 
     return Status;
 }
 
-KERNEL_Status_t KERNEL_InterruptEnable( void )
+KERNEL_Status_t KERNEL_InterruptEnable( KERNEL_t KERNELx )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
 
@@ -310,7 +309,7 @@ KERNEL_Status_t KERNEL_InterruptEnable( void )
     {
         KERNEL_Trace( "%s( void )", __FUNCTION__ );
 
-        Status = KERNEL_Instance_InterruptEnable( &KERNEL_Context.Instance );
+        Status = KERNEL_Port_InterruptEnable( KERNELx );
     }
     while ( 0 );
 
@@ -321,7 +320,7 @@ KERNEL_Status_t KERNEL_InterruptEnable( void )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char KERNEL_VERSION[] = "0.0.0.v20260517-1631";
+const char KERNEL_VERSION[] = "0.0.0.v20260526-1736";
 
 // #############################################################################
 // #### File Guard #############################################################

@@ -107,6 +107,26 @@ extern "C"
         LIST_Node_t Node;
     } KERNEL_Task_t;
 
+    /**
+     *  @brief KERNEL Callback Context
+     */
+    typedef void KERNEL_CallbackContext_t;
+
+    /**
+     *  @brief KERNEL Callback
+     */
+    typedef KERNEL_Status_t( KERNEL_Callback_t )( KERNEL_CallbackContext_t * Context );
+
+    /**
+     *  @brief KERNEL On State Change Configuration
+     *
+     *  @struct KERNEL_OnEnter_t
+     */
+    typedef struct KERNEL_OnPowerRequest
+    {
+        KERNEL_Callback_t * Callback;
+    } KERNEL_OnPowerRequest_t;
+
     // #############################################################################
     // #### Public Method(s) #######################################################
     // #############################################################################
@@ -116,7 +136,7 @@ extern "C"
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_Initialize( void );
+    KERNEL_Status_t KERNEL_Initialize( KERNEL_t KERNELx );
 
     /**
      *  @brief Cycle Kernel and ALL Created Tasks
@@ -125,14 +145,14 @@ extern "C"
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_Cycle( void );
+    KERNEL_Status_t KERNEL_Cycle( KERNEL_t KERNELx );
 
     /**
      *  @brief DeInitialize Kernel
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_DeInitialize( void );
+    KERNEL_Status_t KERNEL_DeInitialize( KERNEL_t KERNELx );
 
     /**
      *  @brief Get reset reason
@@ -141,7 +161,7 @@ extern "C"
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_GetResetReason( KERNEL_ResetReason_t * ResetReason );
+    KERNEL_Status_t KERNEL_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * ResetReason );
 
     /**
      *  @brief Create and register Task into Kernel
@@ -150,7 +170,7 @@ extern "C"
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_TaskCreate( KERNEL_Task_t * Task );
+    KERNEL_Status_t KERNEL_TaskCreate( KERNEL_t KERNELx, KERNEL_Task_t * Task );
 
     /**
      *  @brief Delete and unregister Task from Kernel
@@ -159,35 +179,35 @@ extern "C"
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_Task_t * Task );
+    KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task );
 
     /**
      *  @brief Reset
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_Reset( void );
+    KERNEL_Status_t KERNEL_Reset( KERNEL_t KERNELx );
 
     /**
      *  @brief Enable clock
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_ClockEnable( void );
+    KERNEL_Status_t KERNEL_ClockEnable( KERNEL_t KERNELx );
 
     /**
      *  @brief Disable ALL Interrupts
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_InterruptDisable( void );
+    KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx );
 
     /**
      *  @brief Enable ALL Interrupts
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_InterruptEnable( void );
+    KERNEL_Status_t KERNEL_InterruptEnable( KERNEL_t KERNELx );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
