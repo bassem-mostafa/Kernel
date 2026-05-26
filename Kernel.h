@@ -134,6 +134,8 @@ extern "C"
     /**
      *  @brief Initialize Kernel
      *
+     *  @param[in] KERNELx Instance
+     *
      *  @return KERNEL_Status_t
      */
     KERNEL_Status_t KERNEL_Initialize( KERNEL_t KERNELx );
@@ -143,12 +145,16 @@ extern "C"
      *
      *  @note Created tasks are cycled in SAME ORDER of creation
      *
+     *  @param[in] KERNELx Instance
+     *
      *  @return KERNEL_Status_t
      */
     KERNEL_Status_t KERNEL_Cycle( KERNEL_t KERNELx );
 
     /**
      *  @brief DeInitialize Kernel
+     *
+     *  @param[in] KERNELx Instance
      *
      *  @return KERNEL_Status_t
      */
@@ -157,6 +163,7 @@ extern "C"
     /**
      *  @brief Get reset reason
      *
+     *  @param[in] KERNELx Instance
      *  @param[out] ResetReason Reset Reason
      *
      *  @return KERNEL_Status_t
@@ -166,6 +173,7 @@ extern "C"
     /**
      *  @brief Create and register Task into Kernel
      *
+     *  @param[in] KERNELx Instance
      *  @param[in] Task Task
      *
      *  @return KERNEL_Status_t
@@ -175,6 +183,7 @@ extern "C"
     /**
      *  @brief Delete and unregister Task from Kernel
      *
+     *  @param[in] KERNELx Instance
      *  @param[in] Task Task
      *
      *  @return KERNEL_Status_t
@@ -184,12 +193,16 @@ extern "C"
     /**
      *  @brief Reset
      *
+     *  @param[in] KERNELx Instance
+     *
      *  @return KERNEL_Status_t
      */
     KERNEL_Status_t KERNEL_Reset( KERNEL_t KERNELx );
 
     /**
      *  @brief Enable clock
+     *
+     *  @param[in] KERNELx Instance
      *
      *  @return KERNEL_Status_t
      */
@@ -198,12 +211,16 @@ extern "C"
     /**
      *  @brief Disable ALL Interrupts
      *
+     *  @param[in] KERNELx Instance
+     *
      *  @return KERNEL_Status_t
      */
     KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx );
 
     /**
      *  @brief Enable ALL Interrupts
+     *
+     *  @param[in] KERNELx Instance
      *
      *  @return KERNEL_Status_t
      */
