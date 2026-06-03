@@ -161,6 +161,26 @@ extern "C"
     KERNEL_Status_t KERNEL_DeInitialize( KERNEL_t KERNELx );
 
     /**
+     *  @brief Get Kernel Power Mode
+     *
+     *  @param[in]  KERNELx   Instance
+     *  @param[out] PowerMode Power Mode
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_GetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t * PowerMode );
+
+    /**
+     *  @brief Set Kernel Power Mode
+     *
+     *  @param[in] KERNELx   Instance
+     *  @param[in] PowerMode Power Mode
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_SetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t PowerMode );
+
+    /**
      *  @brief Get reset reason
      *
      *  @param[in] KERNELx Instance

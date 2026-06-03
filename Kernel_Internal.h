@@ -89,6 +89,10 @@ extern "C"
 
     typedef struct KERNEL_Instance
     {
+        KERNEL_Event_t Event;             ///< Event
+        KERNEL_ResetReason_t ResetReason; ///< Reset Reason
+        KERNEL_PowerMode_t PowerMode;     ///< Power Mode
+        LIST_t Tasks;                     ///< List of tasks registered/added into the kernel to manage
     } KERNEL_Instance_t;
 
     // #############################################################################
@@ -99,6 +103,9 @@ extern "C"
     KERNEL_Status_t KERNEL_Port_Initialize( KERNEL_t KERNELx );
     KERNEL_Status_t KERNEL_Port_Cycle( KERNEL_t KERNELx );
     KERNEL_Status_t KERNEL_Port_DeInitialize( KERNEL_t KERNELx );
+
+    KERNEL_Status_t KERNEL_Port_GetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t * PowerMode );
+    KERNEL_Status_t KERNEL_Port_SetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t PowerMode );
 
     KERNEL_Status_t KERNEL_Port_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * ResetReason );
 
