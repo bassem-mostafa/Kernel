@@ -217,42 +217,6 @@ KERNEL_Status_t KERNEL_DeInitialize( KERNEL_t KERNELx )
     return Status;
 }
 
-KERNEL_Status_t KERNEL_GetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t * PowerMode )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        KERNEL_Trace( "%s( KERNELx=%d, PowerMode=%p )", __FUNCTION__, KERNELx, PowerMode );
-
-        if ( ( Status = KERNEL_Port_GetPowerMode( KERNELx, PowerMode ) ) != KERNEL_Status_Success )
-        {
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-KERNEL_Status_t KERNEL_SetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t PowerMode )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        KERNEL_Trace( "%s( KERNELx=%d, PowerMode=%d )", __FUNCTION__, KERNELx, PowerMode );
-
-        if ( ( Status = KERNEL_Port_SetPowerMode( KERNELx, PowerMode ) ) != KERNEL_Status_Success )
-        {
-            break;
-        }
-    }
-    while ( 0 );
-
-    return Status;
-}
-
 KERNEL_Status_t KERNEL_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * ResetReason )
 {
     KERNEL_Status_t Status = KERNEL_Status_Error;
@@ -268,6 +232,102 @@ KERNEL_Status_t KERNEL_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * 
         }
 
         Status = KERNEL_Port_GetResetReason( KERNELx, ResetReason );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Error;
+
+    do
+    {
+        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
+
+        Status = KERNEL_Port_InterruptDisable( KERNELx );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t KERNEL_InterruptEnable( KERNEL_t KERNELx )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Error;
+
+    do
+    {
+        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
+
+        Status = KERNEL_Port_InterruptEnable( KERNELx );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t KERNEL_Reset( KERNEL_t KERNELx )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
+
+        Status = KERNEL_Port_Reset( KERNELx );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t KERNEL_ClockEnable( KERNEL_t KERNELx )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
+
+        Status = KERNEL_Port_ClockEnable( KERNELx );
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t KERNEL_GetPowerState( KERNEL_t KERNELx, KERNEL_PowerState_t * PowerState )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        KERNEL_Trace( "%s( KERNELx=%d, PowerState=%p )", __FUNCTION__, KERNELx, PowerState );
+
+        if ( ( Status = KERNEL_Port_GetPowerState( KERNELx, PowerState ) ) != KERNEL_Status_Success )
+        {
+            break;
+        }
+    }
+    while ( 0 );
+
+    return Status;
+}
+
+KERNEL_Status_t KERNEL_SetPowerState( KERNEL_t KERNELx, KERNEL_PowerState_t PowerState )
+{
+    KERNEL_Status_t Status = KERNEL_Status_Success;
+
+    do
+    {
+        KERNEL_Trace( "%s( KERNELx=%d, PowerState=%d )", __FUNCTION__, KERNELx, PowerState );
+
+        if ( ( Status = KERNEL_Port_SetPowerState( KERNELx, PowerState ) ) != KERNEL_Status_Success )
+        {
+            break;
+        }
     }
     while ( 0 );
 
@@ -316,71 +376,11 @@ KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task )
     return Status;
 }
 
-KERNEL_Status_t KERNEL_Reset( KERNEL_t KERNELx )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
-
-        Status = KERNEL_Port_Reset( KERNELx );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-KERNEL_Status_t KERNEL_ClockEnable( KERNEL_t KERNELx )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
-
-        Status = KERNEL_Port_ClockEnable( KERNELx );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Error;
-
-    do
-    {
-        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
-
-        Status = KERNEL_Port_InterruptDisable( KERNELx );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-KERNEL_Status_t KERNEL_InterruptEnable( KERNEL_t KERNELx )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Error;
-
-    do
-    {
-        KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
-
-        Status = KERNEL_Port_InterruptEnable( KERNELx );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
 // #############################################################################
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char KERNEL_VERSION[] = "0.0.0.v20260604-0241";
+const char KERNEL_VERSION[] = "0.0.0.v20260604-1610";
 
 // #############################################################################
 // #### File Guard #############################################################

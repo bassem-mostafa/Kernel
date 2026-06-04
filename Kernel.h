@@ -117,16 +117,6 @@ extern "C"
      */
     typedef KERNEL_Status_t( KERNEL_Callback_t )( KERNEL_CallbackContext_t * Context );
 
-    /**
-     *  @brief KERNEL On State Change Configuration
-     *
-     *  @struct KERNEL_OnEnter_t
-     */
-    typedef struct KERNEL_OnPowerRequest
-    {
-        KERNEL_Callback_t * Callback;
-    } KERNEL_OnPowerRequest_t;
-
     // #############################################################################
     // #### Public Method(s) #######################################################
     // #############################################################################
@@ -161,26 +151,6 @@ extern "C"
     KERNEL_Status_t KERNEL_DeInitialize( KERNEL_t KERNELx );
 
     /**
-     *  @brief Get Kernel Power Mode
-     *
-     *  @param[in]  KERNELx   Instance
-     *  @param[out] PowerMode Power Mode
-     *
-     *  @return KERNEL_Status_t
-     */
-    KERNEL_Status_t KERNEL_GetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t * PowerMode );
-
-    /**
-     *  @brief Set Kernel Power Mode
-     *
-     *  @param[in] KERNELx   Instance
-     *  @param[in] PowerMode Power Mode
-     *
-     *  @return KERNEL_Status_t
-     */
-    KERNEL_Status_t KERNEL_SetPowerMode( KERNEL_t KERNELx, KERNEL_PowerMode_t PowerMode );
-
-    /**
      *  @brief Get reset reason
      *
      *  @param[in] KERNELx Instance
@@ -191,24 +161,22 @@ extern "C"
     KERNEL_Status_t KERNEL_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * ResetReason );
 
     /**
-     *  @brief Create and register Task into Kernel
+     *  @brief Disable ALL Interrupts
      *
      *  @param[in] KERNELx Instance
-     *  @param[in] Task Task
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_TaskCreate( KERNEL_t KERNELx, KERNEL_Task_t * Task );
+    KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx );
 
     /**
-     *  @brief Delete and unregister Task from Kernel
+     *  @brief Enable ALL Interrupts
      *
      *  @param[in] KERNELx Instance
-     *  @param[in] Task Task
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task );
+    KERNEL_Status_t KERNEL_InterruptEnable( KERNEL_t KERNELx );
 
     /**
      *  @brief Reset
@@ -229,22 +197,44 @@ extern "C"
     KERNEL_Status_t KERNEL_ClockEnable( KERNEL_t KERNELx );
 
     /**
-     *  @brief Disable ALL Interrupts
+     *  @brief Get Kernel Power State
      *
-     *  @param[in] KERNELx Instance
+     *  @param[in]  KERNELx    Instance
+     *  @param[out] PowerState State
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx );
+    KERNEL_Status_t KERNEL_GetPowerState( KERNEL_t KERNELx, KERNEL_PowerState_t * PowerState );
 
     /**
-     *  @brief Enable ALL Interrupts
+     *  @brief Set Kernel Power State
      *
-     *  @param[in] KERNELx Instance
+     *  @param[in] KERNELx    Instance
+     *  @param[in] PowerState State
      *
      *  @return KERNEL_Status_t
      */
-    KERNEL_Status_t KERNEL_InterruptEnable( KERNEL_t KERNELx );
+    KERNEL_Status_t KERNEL_SetPowerState( KERNEL_t KERNELx, KERNEL_PowerState_t PowerState );
+
+    /**
+     *  @brief Create and register Task into Kernel
+     *
+     *  @param[in] KERNELx Instance
+     *  @param[in] Task Task
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_TaskCreate( KERNEL_t KERNELx, KERNEL_Task_t * Task );
+
+    /**
+     *  @brief Delete and unregister Task from Kernel
+     *
+     *  @param[in] KERNELx Instance
+     *  @param[in] Task Task
+     *
+     *  @return KERNEL_Status_t
+     */
+    KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
