@@ -87,8 +87,17 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
+    typedef enum KERNEL_Type
+    {
+        KERNEL_Type_Unknown = 0, ///< Unknown
+        KERNEL_Type_Null,        ///< Bare-metal
+        KERNEL_Type_FreeRTOS,    ///< FreeRTOS
+        KERNEL_Type_Zephyr,      ///< Zephyr
+    } KERNEL_Type_t;
+
     typedef struct KERNEL_Instance
     {
+        KERNEL_Type_t Type;               ///< Type
         KERNEL_Event_t Event;             ///< Event
         KERNEL_ResetReason_t ResetReason; ///< Reset Reason
         KERNEL_PowerState_t PowerState;   ///< Power State
