@@ -90,7 +90,7 @@ extern "C"
     typedef enum KERNEL_Type
     {
         KERNEL_Type_Unknown = 0, ///< Unknown
-        KERNEL_Type_Null,        ///< Bare-metal
+        KERNEL_Type_Null,        ///< Null (Bare-metal)
         KERNEL_Type_FreeRTOS,    ///< FreeRTOS
         KERNEL_Type_Zephyr,      ///< Zephyr
     } KERNEL_Type_t;

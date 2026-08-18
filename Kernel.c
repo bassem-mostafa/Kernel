@@ -59,72 +59,17 @@
 // #### Private Type(s) ########################################################
 // #############################################################################
 
-typedef struct KERNEL_Context
-{
-} KERNEL_Context_t;
-
 // #############################################################################
 // #### Private Method(s) Prototype ############################################
 // #############################################################################
-
-static KERNEL_Status_t KERNEL_Context_Initialize( void );
-static KERNEL_Status_t KERNEL_Context_Cycle( void );
-static KERNEL_Status_t KERNEL_Context_DeInitialize( void );
 
 // #############################################################################
 // #### Private Variable(s) ####################################################
 // #############################################################################
 
-static KERNEL_Context_t KERNEL_Context;
-
 // #############################################################################
 // #### Private Method(s) ######################################################
 // #############################################################################
-
-static KERNEL_Status_t KERNEL_Context_Initialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        KERNEL_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( KERNEL_Context );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t KERNEL_Context_Cycle( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        KERNEL_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( KERNEL_Context );
-    }
-    while ( 0 );
-
-    return Status;
-}
-
-static KERNEL_Status_t KERNEL_Context_DeInitialize( void )
-{
-    KERNEL_Status_t Status = KERNEL_Status_Success;
-
-    do
-    {
-        KERNEL_Trace( "%s( void )", __FUNCTION__ );
-
-        UTIL_UNUSED( KERNEL_Context );
-    }
-    while ( 0 );
-
-    return Status;
-}
 
 // #############################################################################
 // #### Public Method(s) #######################################################
@@ -138,11 +83,6 @@ KERNEL_Status_t KERNEL_Initialize( KERNEL_t KERNELx )
     do
     {
         KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
-
-        if ( ( Status = KERNEL_Context_Initialize( ) ) != KERNEL_Status_Success )
-        {
-            break;
-        }
 
         KERNEL_t KERNEL_start = ( KERNELx == KERNEL_All ? KERNEL_Null : KERNELx );
         KERNEL_t KERNEL_end = ( KERNELx == KERNEL_All ? KERNEL_Count : KERNELx + 1 );
@@ -167,11 +107,6 @@ KERNEL_Status_t KERNEL_Cycle( KERNEL_t KERNELx )
     do
     {
         KERNEL_Trace( "%s( KERNELx=%d )", __FUNCTION__, KERNELx );
-
-        if ( ( Status = KERNEL_Context_Cycle( ) ) != KERNEL_Status_Success )
-        {
-            break;
-        }
 
         KERNEL_t KERNEL_start = ( KERNELx == KERNEL_All ? KERNEL_Null : KERNELx );
         KERNEL_t KERNEL_end = ( KERNELx == KERNEL_All ? KERNEL_Count : KERNELx + 1 );
@@ -206,11 +141,6 @@ KERNEL_Status_t KERNEL_DeInitialize( KERNEL_t KERNELx )
                 Status = KERNEL_Status;
             }
         }
-
-        if ( ( Status = KERNEL_Context_DeInitialize( ) ) != KERNEL_Status_Success )
-        {
-            break;
-        }
     }
     while ( 0 );
 
@@ -219,7 +149,7 @@ KERNEL_Status_t KERNEL_DeInitialize( KERNEL_t KERNELx )
 
 KERNEL_Status_t KERNEL_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * ResetReason )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -240,7 +170,7 @@ KERNEL_Status_t KERNEL_GetResetReason( KERNEL_t KERNELx, KERNEL_ResetReason_t * 
 
 KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -255,7 +185,7 @@ KERNEL_Status_t KERNEL_InterruptDisable( KERNEL_t KERNELx )
 
 KERNEL_Status_t KERNEL_InterruptEnable( KERNEL_t KERNELx )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -336,7 +266,7 @@ KERNEL_Status_t KERNEL_SetPowerState( KERNEL_t KERNELx, KERNEL_PowerState_t Powe
 
 KERNEL_Status_t KERNEL_TaskCreate( KERNEL_t KERNELx, KERNEL_Task_t * Task )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -357,7 +287,7 @@ KERNEL_Status_t KERNEL_TaskCreate( KERNEL_t KERNELx, KERNEL_Task_t * Task )
 
 KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task )
 {
-    KERNEL_Status_t Status = KERNEL_Status_Error;
+    KERNEL_Status_t Status = KERNEL_Status_Success;
 
     do
     {
@@ -380,7 +310,7 @@ KERNEL_Status_t KERNEL_TaskDestroy( KERNEL_t KERNELx, KERNEL_Task_t * Task )
 // #### Public Variable(s) #####################################################
 // #############################################################################
 
-const char KERNEL_VERSION[] = "0.0.0.v20260815-2008";
+const char KERNEL_VERSION[] = "0.0.0.v20260818-0345";
 
 // #############################################################################
 // #### File Guard #############################################################
